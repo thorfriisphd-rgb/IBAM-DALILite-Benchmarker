@@ -47,8 +47,6 @@ The DALILite benchmark includes both C12/IBAM-family structures and canonical RN
 
 | Abbreviation | Organism / source | Broad lineage | Role in benchmark |
 |---|---|---|---|
-| Abbreviation | Organism / source | Broad lineage | Role in benchmark |
-|---|---|---|---|
 | Mm | *Mus musculus* | Vertebrate / mammal | C12orf29 / IBAM-family structure; RefSeq: NP_780337.2 |
 | Oa | *Ovis aries* | Vertebrate / mammal | C12orf29 / IBAM-family structure; GenBank: ADR10276 |
 | Ng | *Naegleria gruberi* | Discoba / Heterolobosea | Uncharacterized protein NAEGRDRAFT_72276; C12/IBAM-family candidate; GenBank/RefSeq: XP_002672595.1; 337 aa |
