@@ -41,7 +41,22 @@ IBAM_DALILite_benchmark/
 ```
 dali_batch_runs/
 ```
-## Requirements
+## Species and reference-structure origins
+
+The DALILite benchmark includes both C12/IBAM-family structures and canonical RNA ligase reference structures. The table below lists the organismal or source origin of each abbreviation used in the benchmark folder names.
+
+| Abbreviation | Organism / source | Broad lineage | Role in benchmark |
+|---|---|---|---|
+| Mm | *Mus musculus* | Vertebrate / mammal | C12orf29 / IBAM-family structure |
+| Oa | *Ovis aries* | Vertebrate / mammal | C12orf29 / IBAM-family structure |
+| Hc | *Hahella chejuensis* | Bacterium / Gammaproteobacteria | C12/IBAM-family structure |
+| Ng | *Naegleria gruberi* | Discoba / Heterolobosea | C12/IBAM-family structure |
+| Planc | Planctomycetes representative | Bacterium / Planctomycetota | C12/IBAM-family structure |
+| 1S68 | Tequatrovirus T4 | Bacteriophage | RNA ligase reference structure |
+| 2HVQ | Tequatrovirus T4 | Bacteriophage | RNA ligase reference structure |
+| 5COT | *Naegleria gruberi* | Discoba / Heterolobosea | RNA ligase reference structure |
+| 5D1P | *Methanothermobacter thermautotrophicus* str. Delta H | Archaeon / Euryarchaeota | RNA ligase reference structure |
+| 6N67 | *Thermochaetoides thermophila* DSM 1495 | Bacterium / Thermotogota-related lineage | RNA ligase reference structure |
 
 ---
 
