@@ -52,11 +52,15 @@ The DALILite benchmark includes both C12/IBAM-family structures and canonical RN
 | Hc | *Hahella chejuensis* | Bacterium / Gammaproteobacteria | C12/IBAM-family structure |
 | Ng | *Naegleria gruberi* | Discoba / Heterolobosea | C12/IBAM-family structure |
 | Planc | Planctomycetes representative | Bacterium / Planctomycetota | C12/IBAM-family structure |
-| 1S68 | Tequatrovirus T4 | Bacteriophage | RNA ligase reference structure |
-| 2HVQ | Tequatrovirus T4 | Bacteriophage | RNA ligase reference structure |
+| 1S68 | Tequatrovirus T4 | Bacteriophage | T4 RNA ligase 2 reference structure |
+| 2HVQ | Tequatrovirus T4 | Bacteriophage | Adenylated full-length T4 RNA ligase 2 reference structure |
 | 5COT | *Naegleria gruberi* | Discoba / Heterolobosea | RNA ligase reference structure |
 | 5D1P | *Methanothermobacter thermautotrophicus* str. Delta H | Archaeon / Euryarchaeota | RNA ligase reference structure |
 | 6N67 | *Thermochaetoides thermophila* DSM 1495 | Bacterium / Thermotogota-related lineage | RNA ligase reference structure |
+
+
+The C12/IBAM-family structures are compared against RNA ligase reference structures to distinguish broad fold-level similarity from specific structural identity with canonical RNA ligases. The benchmark therefore includes both C12-vs-ligase comparisons and ligase-vs-ligase controls.
+
 
 ---
 
