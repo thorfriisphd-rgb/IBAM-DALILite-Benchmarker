@@ -47,11 +47,13 @@ The DALILite benchmark includes both C12/IBAM-family structures and canonical RN
 
 | Abbreviation | Organism / source | Broad lineage | Role in benchmark |
 |---|---|---|---|
-| Mm | *Mus musculus* | Vertebrate / mammal | C12orf29 / IBAM-family structure |
-| Oa | *Ovis aries* | Vertebrate / mammal | C12orf29 / IBAM-family structure |
-| Ng | *Naegleria gruberi* | Discoba / Heterolobosea | C12/IBAM-family structure |
-| Hc | *Hahella* sp. NBU794 | Bacterium / Gammaproteobacteria | C12/IBAM-family candidate; RefSeq: WP_431686928.1; 205 aa |
-| Planc | Planctomycetes bacterium RIFCSPHIGHO2_02_FULL_52_58 | Bacterium / Planctomycetota MAG | C12/IBAM-family candidate; GenBank: OHB90221.1; 204 aa |
+| Abbreviation | Organism / source | Broad lineage | Role in benchmark |
+|---|---|---|---|
+| Mm | *Mus musculus* | Vertebrate / mammal | C12orf29 / IBAM-family structure; RefSeq: NP_780337.2 |
+| Oa | *Ovis aries* | Vertebrate / mammal | C12orf29 / IBAM-family structure; GenBank: ADR10276 |
+| Ng | *Naegleria gruberi* | Discoba / Heterolobosea | Uncharacterized protein NAEGRDRAFT_72276; C12/IBAM-family candidate; GenBank/RefSeq: XP_002672595.1; 337 aa |
+| Hc | *Hahella* sp. NBU794 | Bacterium / Gammaproteobacteria | Hypothetical protein; C12/IBAM-family candidate; RefSeq: WP_431686928.1; 205 aa |
+| Planc | Planctomycetes bacterium RIFCSPHIGHO2_02_FULL_52_58 | Bacterium / Planctomycetota MAG | Hypothetical protein A3D89_03640; C12/IBAM-family candidate; GenBank: OHB90221.1; 204 aa |
 | 1S68 | Tequatrovirus T4 | Bacteriophage | T4 RNA ligase 2 reference structure |
 | 2HVQ | Tequatrovirus T4 | Bacteriophage | Adenylated full-length T4 RNA ligase 2 reference structure |
 | 5COT | *Naegleria gruberi* | Discoba / Heterolobosea | RNA ligase reference structure |
