@@ -59,7 +59,7 @@ The DALILite benchmark includes both C12/IBAM-family structures and canonical RN
 | 6N67 | *Thermochaetoides thermophila* DSM 1495 | Bacterium / Thermotogota-related lineage | RNA ligase reference structure |
 
 
-The C12/IBAM-family structures are compared against RNA ligase reference structures to distinguish broad fold-level similarity from specific structural identity with canonical RNA ligases. The benchmark therefore includes both C12-vs-ligase comparisons and ligase-vs-ligase controls. 1S68 and 2HVQ are both Tequatrovirus T4 RNA ligase 2 structures and are therefore not independent taxonomic comparators. They are retained as an internal ligase-vs-ligase positive-control pair, allowing the benchmark to compare C12/IBAM-vs-ligase scores against the level of structural similarity observed between closely related canonical RNA ligase structures.
+The C12/IBAM-family structures are compared against RNA ligase reference structures to distinguish broad fold-level similarity from specific structural identity with canonical RNA ligases. The benchmark therefore includes both C12-vs-ligase comparisons and ligase-vs-ligase controls. 1S68 and 2HVQ are both Tequatrovirus T4 RNA ligase 2 structures, representing related reference structures from the same canonical RNA ligase family. They are retained as separate RNA ligase comparators but are not used as an internal 1S68-vs-2HVQ benchmark pair.
 
 
 ---
