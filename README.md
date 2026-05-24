@@ -51,7 +51,7 @@ The DALILite benchmark includes both C12/IBAM-family structures and canonical RN
 | Oa | *Ovis aries* | Vertebrate / mammal | C12orf29 / IBAM-family structure |
 | Hc | *Hahella chejuensis* | Bacterium / Gammaproteobacteria | C12/IBAM-family structure |
 | Ng | *Naegleria gruberi* | Discoba / Heterolobosea | C12/IBAM-family structure |
-| Planc | Planctomycetes representative | Bacterium / Planctomycetota | C12/IBAM-family structure |
+| Planc | Planctomycetes bacterium RIFCSPHIGHO2_02_FULL_52_58 | Bacterium / Planctomycetota MAG | Hypothetical protein A3D89_03640; C12/IBAM-family candidate; GenBank: OHB90221.1; 204 aa |
 | 1S68 | Tequatrovirus T4 | Bacteriophage | T4 RNA ligase 2 reference structure |
 | 2HVQ | Tequatrovirus T4 | Bacteriophage | Adenylated full-length T4 RNA ligase 2 reference structure |
 | 5COT | *Naegleria gruberi* | Discoba / Heterolobosea | RNA ligase reference structure |
