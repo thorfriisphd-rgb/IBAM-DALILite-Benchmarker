@@ -42,6 +42,7 @@ IBAM_DALILite_benchmark/
 dali_batch_runs/
 ```
 
+---
 
 ## Species and reference-structure origins
 
