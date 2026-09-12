@@ -16,6 +16,16 @@ The pipeline performs systematic DALILite structural comparisons between:
 The goal is to rigorously test the hypothesis that C12orf29 is structurally related to RNA ligases.
 The entire analysis can be reproduced with a single command.
 
+
+## Benchmark workflow
+
+![IBAM DALILite Structural Benchmark Pipeline](figures/IBAM_DALILite_structural_benchmark_pipeline.png)
+
+The benchmark establishes the structural-similarity range observed among bona fide RNA ligases, tests IBAM against that empirical reference, and uses intra-IBAM controls together with independent ChimeraX analysis to distinguish genuine fold divergence from model uncertainty.
+
+
+
+
 ### Repository Structure
 ```
 IBAM_DALILite_benchmark/
