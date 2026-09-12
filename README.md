@@ -17,7 +17,7 @@ The goal is to rigorously test the hypothesis that C12orf29 is structurally rela
 The entire analysis can be reproduced with a single command.
 
 
-## Benchmark workflow
+### Benchmark workflow
 
 ![IBAM DALILite Structural Benchmark Pipeline](figures/IBAM_DALILite_structural_benchmark_pipeline.png)
 
