@@ -43,10 +43,12 @@ die() {
 ROOT_DIR="$(pwd)"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$ROOT_DIR")"
-RUN_DIR="${PROJECT_ROOT}/dali_batch_runs"
+RUN_ID="$(date +'%Y%m%d_%H%M%S')"
+RUN_DIR="${PROJECT_ROOT}/dali_batch_runs/${RUN_ID}"
 
 log "ROOT_DIR     = ${ROOT_DIR}"
 log "SCRIPT_DIR   = ${SCRIPT_DIR}"
+log "RUN_ID       = ${RUN_ID}"
 log "RUN_DIR      = ${RUN_DIR}"
 
 ############################################################
