@@ -197,10 +197,10 @@ If you are adding a new taxon or structure to the benchmark, add its alias to th
 
 ## Output
 
-Results are written to:
+Each benchmark execution is written to a timestamped run directory:
 
-```
-dali_batch_runs/
+```text
+dali_batch_runs/YYYYMMDD_HHMMSS/
 ```
 
 ### Generated files
