@@ -217,12 +217,16 @@ The `Class` column is included in the manuscript TSV for traceability. The LaTeX
 
 ### Optional ChimeraX MatchMaker integration
 
+
 The pipeline **does not execute ChimeraX**. If available, put a TSV named `chimerax_matchmaker.tsv` in the repository root (alongside `scripts/`), with these columns:
 
 ```text
-Pair	Pruned	Total	GlobalRMSD
-FvCOT vs 5COT	255	331	4.018
+Pair             Pruned   Total   GlobalRMSD
+FvCOT vs 5COT      255     331        4.018
 ```
+
+**Note:** The example above uses spaces for visual alignment. The actual TSV file must use tab characters between columns.
+
 
 - `Pair` must use the same input protein names as the DALI output, separated by ` vs `; reversed order is accepted.
 - `Pruned` and `Total` are the atom-pair counts reported by ChimeraX MatchMaker.
