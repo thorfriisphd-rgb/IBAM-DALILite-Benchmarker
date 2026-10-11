@@ -1,8 +1,7 @@
 
 # IBAM DALILite Structural Benchmark
 
-**Release documentation: v1.1.0 (proposed)** — automated classified DALI figures and LaTeX/ChimeraX reporting.
-Version tag and GitHub release are pending repository review and commit.
+**Release documentation: v1.1.0** 
 
 This repository contains the reproducibility pipeline for the structural benchmarking analyses used in the IBAM/C12orf29 study.
 
@@ -315,7 +314,7 @@ This ensures that the structural benchmark reported in the study can be fully re
 
 ## Release notes
 
-### v1.1.0 — planned release (11 October 2026)
+### v1.1.0 — 11 October 2026
 
 Adds metadata-driven comparison classification, automatically generated horizontal Z-score figures, and Overleaf-ready LaTeX tables with optional ChimeraX MatchMaker integration. The 21-pair IBAM dataset includes FvCOT. Four-character DALILite ID mapping is still manually maintained; fully generic alias handling remains future work.
 
