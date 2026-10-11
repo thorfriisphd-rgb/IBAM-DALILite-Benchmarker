@@ -1,6 +1,9 @@
 
 # IBAM DALILite Structural Benchmark
 
+**Release documentation: v1.1.0 (proposed)** — automated classified DALI figures and LaTeX/ChimeraX reporting.
+Version tag and GitHub release are pending repository review and commit.
+
 This repository contains the reproducibility pipeline for the structural benchmarking analyses used in the IBAM/C12orf29 study.
 
 C12orf29 is proposed here to encode IBAM (In Between Actin and Myosin), a contractile-system protein exhibiting a deeply conserved actomyosin interaction grammar spanning approximately one billion years of evolution.
@@ -14,7 +17,7 @@ The pipeline performs systematic DALILite structural comparisons between:
 - IBAM vs IBAM homologues
 
 The goal is to rigorously test the hypothesis that C12orf29 is structurally related to RNA ligases.
-The entire analysis can be reproduced with a single command.
+The DALILite analysis and manuscript-oriented reporting can be regenerated with a single command. ChimeraX MatchMaker measurements are imported separately; the pipeline does not run ChimeraX automatically.
 
 
 ### Benchmark workflow
@@ -26,32 +29,45 @@ The benchmark establishes the structural-similarity range observed among bona fi
 ---
 
 
-### Repository Structure
-```
+### What's new in v1.1.0
+
+- Classified DALI comparison tables with a `Class` column derived from an editable protein-group registry.
+- Automatically generated, horizontal DALI Z-score charts (PNG, PDF and SVG) with class colours and a legend.
+- LaTeX `booktabs` tables, both standalone for Overleaf and as fragments for an existing manuscript.
+- Optional ChimeraX MatchMaker data joined by comparison pair (including reversed pair order), with coherence calculated as `100 × Pruned / Total`.
+- Missing ChimeraX observations displayed as dashes, not estimated from DALI.
+- The current project dataset contains **21 structural comparisons**, including *Fusarium virguliforme* FvCOT.
+
+The reporting components use metadata rather than fixed protein IDs. **The DALILite batch runner still requires a manually maintained mapping to four-character DALI identifiers**; see the filename convention below.
+
+### Benchmark workflow
+
+![IBAM DALILite Structural Benchmark Pipeline](figures/IBAM_DALILite_structural_benchmark_pipeline.png)
+
+DALI produces structural similarities and aligned-residue metrics; optional ChimeraX MatchMaker measurements add a distinct global-superposition perspective. Classification labels are supplied by the user-maintained registry and **are not inferred from structural similarity or evidence of enzymatic activity**.
+
+### Repository structure
+
+```text
 IBAM_DALILite_benchmark/
-│
-├── dali_projects/                  # Input dataset (PDB structures and comparison definitions)
-│   ├── dali_1S68_vs_5COT/
-│   ├── dali_1S68_vs_OaC12/
-│   ├── dali_5COT_vs_2HVQ/
-│   └── ... (additional comparisons)
-│
-├── scripts/                        # Pipeline scripts
+├── dali_projects/                     # Input dataset (dali_* comparison folders, each with pdb/)
+├── scripts/
 │   ├── run_dali_benchmark_pipeline.sh
 │   ├── run_dalilite_batch.sh
 │   ├── parse_dalilite_results.sh
+│   ├── idb_classification.py
+│   ├── idb_protein_classes.tsv        # Explicit protein-group metadata
 │   ├── make_manuscript_dali_table.py
-│   └── make_manuscript_dali_table_md.py
-│
+│   ├── make_manuscript_dali_table_md.py
+│   ├── idb_plot_zscores.py
+│   └── idb_make_latex_table.py
+├── chimerax_matchmaker.tsv            # Optional curated ChimeraX measurements
+├── dali_batch_runs/                   # Generated timestamped results (not source input)
+├── figures/
 └── README.md
 ```
 
-`dali_projects/` contains the input structures only and should **not be modified**.
-
-##### Pipeline outputs are generated automatically in:
-```
-dali_batch_runs/
-```
+`dali_projects/` contains the reference dataset. Keep the originals intact; add new `dali_*` comparison folders rather than renaming the existing input PDBs.
 
 ---
 
@@ -59,18 +75,19 @@ dali_batch_runs/
 
 The DALILite benchmark includes both C12/IBAM-family structures and canonical RNA ligase reference structures. The table below lists the organismal or source origin of each abbreviation used in the benchmark folder names.
 
-| Abbreviation | Organism / source | Broad lineage | Role in benchmark |
-|---|---|---|---|
-| Mm | *Mus musculus* | Vertebrate / mammal | C12orf29 / IBAM-family structure; RefSeq: NP_780337.2 |
-| Oa | *Ovis aries* | Vertebrate / mammal | C12orf29 / IBAM-family structure; GenBank: ADR10276 |
-| Ng | *Naegleria gruberi* | Discoba / Heterolobosea | C12/IBAM-family candidate; GenBank/RefSeq: XP_002672595.1 |
-| Hc | *Hahella chejuensis* NBU794 | Bacterium / Gammaproteobacteria | C12/IBAM-family candidate; RefSeq: WP_431686928.1|
-| Planc | *Planctomycetes* bacterium | Bacterium / Planctomycetota MAG | C12/IBAM-family candidate; GenBank: OHB90221.1 |
-| 1S68 | Tequatrovirus T4 | Bacteriophage | T4 RNA ligase 2 reference structure |
-| 2HVQ | Tequatrovirus T4 | Bacteriophage | Adenylated full-length T4 RNA ligase 2 reference structure |
-| 5COT | *Naegleria gruberi* | Discoba / Heterolobosea | RNA ligase reference structure |
-| 5D1P | *Methanothermobacter thermautotrophicus* str. Delta H | Archaeon / Euryarchaeota | RNA ligase reference structure |
-| 6N67 | *Thermochaetoides thermophila* DSM 1495 | Bacterium / Thermotogota-related lineage | RNA ligase reference structure |
+| Abbreviation | Organism / source                                     | Broad lineage                            | Role in benchmark                                                                                       |
+| ------------ | ----------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Mm           | *Mus musculus*                                        | Vertebrate / mammal                      | C12orf29 / IBAM-family structure; RefSeq: NP_780337.2                                                   |
+| Oa           | *Ovis aries*                                          | Vertebrate / mammal                      | C12orf29 / IBAM-family structure; GBID: ADR10276                                                        |
+| Ng           | *Naegleria gruberi*                                   | Discoba / Heterolobosea                  | C12/IBAM-family candidate; GenBank/RefSeq: XP_002672595.1                                               |
+| Hc           | *Hahella chejuensis* NBU794                           | Bacterium / Gammaproteobacteria          | C12/IBAM-family candidate; RefSeq: WP_431686928.1                                                       |
+| Planc        | *Planctomycetes* bacterium                            | Bacterium / Planctomycetota MAG          | C12/IBAM-family candidate; GBID: OHB90221.1                                                             |
+| 1S68         | Tequatrovirus T4                                      | Bacteriophage                            | T4 RNA ligase 2 reference structure                                                                     |
+| 2HVQ         | Tequatrovirus T4                                      | Bacteriophage                            | Adenylated full-length T4 RNA ligase 2 reference structure                                              |
+| 5COT         | *Naegleria gruberi*                                   | Discoba / Heterolobosea                  | RNA ligase reference structure                                                                          |
+| FvCOT        | *Fusarium virguliforme*                               | Fungus / Ascomycota                      | 5COT-like comparison structure; biological function not established by DALI alone. GBID: GBJV01001325.1 |
+| 5D1P         | *Methanothermobacter thermautotrophicus* str. Delta H | Archaeon / Euryarchaeota                 | RNA ligase reference structure                                                                          |
+| 6N67         | *Thermochaetoides thermophila* DSM 1495               | Bacterium / Thermotogota-related lineage | RNA ligase reference structure                                                                          |
 
 
 The C12/IBAM-family structures are compared against RNA ligase reference structures to distinguish broad fold-level similarity from specific structural identity with canonical RNA ligases. The benchmark therefore includes both C12-vs-ligase comparisons and ligase-vs-ligase controls. 1S68 and 2HVQ are both Tequatrovirus T4 RNA ligase 2 structures, representing related reference structures from the same canonical RNA ligase family. They are retained as separate RNA ligase comparators but are not used as an internal 1S68-vs-2HVQ benchmark pair.
@@ -85,10 +102,16 @@ The pipeline requires:
 ```
 Linux or macOS shell
 DALILite v5 (built from source, including gfortran — see Installing DALILite below)
-Python3
+Python 3
+Python packages: `pandas` and `matplotlib` (for the plotting stage)
 ```
 
-DALILite must be available in the system `PATH`.
+DALILite must be available in the system `PATH` or in the batch runner's configured fallback installation directory.
+Install Python plotting dependencies into your active environment, for example:
+
+```bash
+python3 -m pip install pandas matplotlib
+```
 
 Example installation location:
 
@@ -177,9 +200,51 @@ The pipeline will automatically:
 - validate the dataset structure
 - run all DALILite pairwise structural comparisons
 - parse the results
-- generate manuscript-ready summary tables
+- generate classified TSV and Markdown tables
+- generate coloured horizontal DALI Z-score figures in PNG, PDF and SVG
+- generate a standalone LaTeX table and an insertable table fragment
+- incorporate optional pre-existing ChimeraX MatchMaker measurements, if their TSV is supplied
 
-Runtime on a typical workstation is approximately 1 minute.
+Runtime depends on the number and complexity of comparisons and the workstation. The reference dataset has been tested with 21 comparisons.
+
+### Comparison classifications
+
+`scripts/idb_protein_classes.tsv` explicitly assigns each input structure to a protein group. It has two columns:
+
+```text
+Protein	Group
+OaC12	C12
+FvCOT	Ligase/ligase-like
+```
+
+The entries above illustrate the **current IBAM dataset**, not rules embedded in the classification code. New proteins and groups can be added by editing the registry. Comparisons are classified as within-group or between-group. If an entry is missing, it is labelled `Unclassified` rather than guessed.
+
+The `Class` column is included in the manuscript TSV for traceability. The LaTeX table uses group headings and omits the redundant class column from each data row.
+
+### Optional ChimeraX MatchMaker integration
+
+The pipeline **does not execute ChimeraX**. If available, put a TSV named `chimerax_matchmaker.tsv` in the repository root (alongside `scripts/`), with these columns:
+
+```text
+Pair	Pruned	Total	GlobalRMSD
+FvCOT vs 5COT	255	331	4.018
+```
+
+- `Pair` must use the same input protein names as the DALI output, separated by ` vs `; reversed order is accepted.
+- `Pruned` and `Total` are the atom-pair counts reported by ChimeraX MatchMaker.
+- `GlobalRMSD` is the RMSD **across all aligned pairs**, not the pruned-pair RMSD.
+- Coherence is derived as `100 × Pruned / Total` and displayed to one decimal place.
+- Unavailable ChimeraX comparisons are shown with dashes; nothing is imputed.
+- Keep alignment settings consistent if comparing MatchMaker coherence across runs.
+
+To use a measurement file elsewhere, set an environment variable when running the master pipeline:
+
+```bash
+IDB_CHIMERAX_TSV=/absolute/path/to/chimerax_matchmaker.tsv \
+  bash ../scripts/run_dali_benchmark_pipeline.sh
+```
+
+The example measurements are specific to this dataset. For unrelated benchmark sets, supply new ChimeraX data or omit the file.
 
 ### PDB filename convention — do not shorten filenames to fit DALILite's 4-character ID limit
 
@@ -205,14 +270,41 @@ dali_batch_runs/YYYYMMDD_HHMMSS/
 
 ### Generated files
 
-|File|Description|
-|---|---|
-|`dali_summary.tsv`|Parsed DALILite output|
-|`dali_manuscript_table.tsv`|Formatted table used in the manuscript|
-|`dali_manuscript_table.md`|Markdown version of the benchmark table|
-|`dali_parse_failures.tsv`|Comparisons that produced DALILite output but could not be parsed into the summary table — check this file if any row in the summary table is unexpectedly blank|
+Within `dali_batch_runs/YYYYMMDD_HHMMSS/results/`:
 
-A preview of the benchmark results is also printed to the terminal when the pipeline finishes.
+| File | Description |
+|---|---|
+| `dali_summary.tsv` | Parsed raw DALILite measurements |
+| `dali_manuscript_table.tsv` | DALI measurements plus explicitly assigned `Class` |
+| `dali_manuscript_table.md` | Markdown summary with comparison classes |
+| `dali_zscores.png` | Classified horizontal Z-score figure |
+| `dali_zscores.pdf` | Vector PDF version of the figure |
+| `dali_zscores.svg` | Editable vector SVG |
+| `dali_structural_table.tex` | Standalone, compilable Overleaf document |
+| `dali_structural_table_fragment.tex` | LaTeX table for inclusion in an existing manuscript |
+
+The terminal prints a preview of the classified benchmark table. Check for blank or unexpectedly missing measurements rather than treating process completion as proof of valid structural results.
+
+### Manual figure or LaTeX regeneration
+
+Run these commands **from `dali_projects/`**, substituting the appropriate prior results directory:
+
+```bash
+python3 ../scripts/idb_plot_zscores.py \
+  ../dali_batch_runs/REPLACE_RUN_ID/results/dali_manuscript_table.tsv \
+  --output ../dali_batch_runs/REPLACE_RUN_ID/results/dali_zscores
+
+python3 ../scripts/idb_make_latex_table.py \
+  ../dali_batch_runs/REPLACE_RUN_ID/results/dali_manuscript_table.tsv \
+  --chimerax ../chimerax_matchmaker.tsv \
+  --output ../dali_batch_runs/REPLACE_RUN_ID/results/dali_structural_table.tex
+```
+
+Omit `--chimerax` if no measurement TSV is available.
+
+The standalone LaTeX output includes `\\documentclass`, `\\begin{document}` and required packages. The fragment is intended for `\\input{...}` inside an existing LaTeX document, which must load `graphicx` and `booktabs`.
+
+The software's default table caption is deliberately generic. For the IBAM manuscript, edit the manuscript caption separately rather than hard-coding an interpretation into the generator.
 
 ---
 
@@ -220,9 +312,17 @@ A preview of the benchmark results is also printed to the terminal when the pipe
 
 All structural comparisons are explicitly defined in the dataset.
 
-Running the pipeline regenerates the benchmarking table directly from the input structures without manual intervention.
+Running the pipeline regenerates DALI measurements, classified summary tables, Z-score plots and LaTeX exports from the input structures and recorded metadata. ChimeraX measurements remain optional, manually obtained inputs and are **not** reproduced solely by running this pipeline.
 
 This ensures that the structural benchmark reported in the study can be fully reproduced by any reviewer or reader, provided the setup notes above — particularly the `gfortran`/DSSP requirements and the PDB naming convention — are followed. These dependencies are not enforced by the pipeline scripts themselves and can fail silently if misconfigured; see **Installing DALILite** above for how to verify a working install before trusting any output.
+
+---
+
+## Release notes
+
+### v1.1.0 — planned release (11 October 2026)
+
+Adds metadata-driven comparison classification, automatically generated horizontal Z-score figures, and Overleaf-ready LaTeX tables with optional ChimeraX MatchMaker integration. The 21-pair IBAM dataset includes FvCOT. Four-character DALILite ID mapping is still manually maintained; fully generic alias handling remains future work.
 
 ---
 

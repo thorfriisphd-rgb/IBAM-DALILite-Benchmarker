@@ -44,6 +44,7 @@ alias4() {
         MmC12) echo "MM12" ;;
         NgC12) echo "NG12" ;;
         Planc) echo "PLN1" ;;
+        FvCOT) echo "FVCT" ;;
         *) die "No 4-char DALILite alias defined for: $1" ;;
     esac
 }

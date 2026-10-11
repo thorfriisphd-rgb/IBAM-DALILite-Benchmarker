@@ -99,6 +99,13 @@ mkdir -p "$RESULTS_DIR"
 SUMMARY_TSV="${RESULTS_DIR}/dali_summary.tsv"
 MANUSCRIPT_TSV="${RESULTS_DIR}/dali_manuscript_table.tsv"
 MANUSCRIPT_MD="${RESULTS_DIR}/dali_manuscript_table.md"
+CLASS_REGISTRY="${SCRIPT_DIR}/idb_protein_classes.tsv"
+CLASS_ARGS=()
+if [[ -f "$CLASS_REGISTRY" ]]; then
+    CLASS_ARGS=(--classes "$CLASS_REGISTRY")
+else
+    log "No class registry present: comparisons will be Unclassified"
+fi
 
 log "Parsing DALILite output"
 
@@ -114,11 +121,37 @@ log "Generating manuscript tables"
 
 python3 "${SCRIPT_DIR}/make_manuscript_dali_table.py" \
     "$SUMMARY_TSV" \
-    "$MANUSCRIPT_TSV"
+    "$MANUSCRIPT_TSV" \
+    "${CLASS_ARGS[@]}"
 
 python3 "${SCRIPT_DIR}/make_manuscript_dali_table_md.py" \
     "$SUMMARY_TSV" \
-    "$MANUSCRIPT_MD"
+    "$MANUSCRIPT_MD" \
+    "${CLASS_ARGS[@]}"
+
+log "Generating classified Z-score figures"
+python3 "${SCRIPT_DIR}/idb_plot_zscores.py" \
+    "$MANUSCRIPT_TSV" \
+    --output "${RESULTS_DIR}/dali_zscores"
+
+############################################################
+# Generate LaTeX table (standalone and manuscript fragment)
+############################################################
+CHIMERAX_ARGS=()
+# Place optional measurements in repository root (or override via env).
+CHIMERAX_TSV="${IDB_CHIMERAX_TSV:-${PROJECT_ROOT}/chimerax_matchmaker.tsv}"
+if [[ -f "$CHIMERAX_TSV" ]]; then
+    log "Using ChimeraX measurements: $CHIMERAX_TSV"
+    CHIMERAX_ARGS=(--chimerax "$CHIMERAX_TSV")
+else
+    log "No ChimeraX TSV found; LaTeX table will show missing values as dashes"
+fi
+log "Generating Overleaf-ready LaTeX table"
+python3 "${SCRIPT_DIR}/idb_make_latex_table.py" \
+    "$MANUSCRIPT_TSV" \
+    "${CHIMERAX_ARGS[@]}" \
+    --output "${RESULTS_DIR}/dali_structural_table.tex" \
+    --caption "Structural comparison of benchmark protein groups"
 
 echo "-----------------------------------------------------"
 echo "DALILite structural benchmark results"
