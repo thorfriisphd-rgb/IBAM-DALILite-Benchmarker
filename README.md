@@ -73,9 +73,9 @@ The DALILite benchmark includes both C12/IBAM-family structures and canonical RN
 | ------------ | ----------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------- |
 | Mm           | *Mus musculus*                                        | Vertebrate / mammal                      | C12orf29 / IBAM-family structure; RefSeq: NP_780337.2                                                   |
 | Oa           | *Ovis aries*                                          | Vertebrate / mammal                      | C12orf29 / IBAM-family structure; GBID: ADR10276                                                        |
-| Ng           | *Naegleria gruberi*                                   | Discoba / Heterolobosea                  | C12/IBAM-family candidate; GenBank/RefSeq: XP_002672595.1                                               |
-| Hc           | *Hahella chejuensis* NBU794                           | Bacterium / Gammaproteobacteria          | C12/IBAM-family candidate; RefSeq: WP_431686928.1                                                       |
-| Planc        | *Planctomycetes* bacterium                            | Bacterium / Planctomycetota MAG          | C12/IBAM-family candidate; GBID: OHB90221.1                                                             |
+| Ng           | *Naegleria gruberi*                                   | Discoba / Heterolobosea                  | C12orf29/IBAM-family candidate; GenBank/RefSeq: XP_002672595.1                                               |
+| Hc           | *Hahella chejuensis* NBU794                           | Bacterium / Gammaproteobacteria          | C12orf29/IBAM-family candidate; RefSeq: WP_431686928.1                                                       |
+| Planc        | *Planctomycetes* bacterium                            | Bacterium / Planctomycetota MAG          | C12orf29/IBAM-family candidate; GBID: OHB90221.1                                                             |
 | 1S68         | Tequatrovirus T4                                      | Bacteriophage                            | T4 RNA ligase 2 reference structure                                                                     |
 | 2HVQ         | Tequatrovirus T4                                      | Bacteriophage                            | Adenylated full-length T4 RNA ligase 2 reference structure                                              |
 | 5COT         | *Naegleria gruberi*                                   | Discoba / Heterolobosea                  | RNA ligase reference structure                                                                          |
@@ -84,7 +84,7 @@ The DALILite benchmark includes both C12/IBAM-family structures and canonical RN
 | 6N67         | *Thermochaetoides thermophila* DSM 1495               | Bacterium / Thermotogota-related lineage | RNA ligase reference structure                                                                          |
 
 
-The C12/IBAM-family structures are compared against RNA ligase reference structures to distinguish broad fold-level similarity from specific structural identity with canonical RNA ligases. The benchmark therefore includes both C12-vs-ligase comparisons and ligase-vs-ligase controls. 1S68 and 2HVQ are both Tequatrovirus T4 RNA ligase 2 structures, representing related reference structures from the same canonical RNA ligase family. They are retained as separate RNA ligase comparators but are not used as an internal 1S68-vs-2HVQ benchmark pair.
+The C12orf29/IBAM-family structures are compared against RNA ligase reference structures to distinguish broad fold-level similarity from specific structural identity with canonical RNA ligases. The benchmark therefore includes both C12-vs-ligase comparisons and ligase-vs-ligase controls. 1S68 and 2HVQ are both Tequatrovirus T4 RNA ligase 2 structures, representing related reference structures from the same canonical RNA ligase family. They are retained as separate RNA ligase comparators but are not used as an internal 1S68-vs-2HVQ benchmark pair.
 
 
 ---
